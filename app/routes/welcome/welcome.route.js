@@ -7,7 +7,10 @@ angular.module('webApp.Route.Welcome', [
   'webApp.Route.Welcome.Controller'
 ])
 
-.config(function ($stateProvider) {
+.config(config);
+
+config.$inject(['$stateProvider']);
+function config($stateProvider) {
   $stateProvider.state('welcome', {
     url: '/',
     templateUrl: 'routes/welcome/welcome.template.html',
@@ -22,6 +25,6 @@ angular.module('webApp.Route.Welcome', [
       }],
     },
   });
-});
+};
 
 })();

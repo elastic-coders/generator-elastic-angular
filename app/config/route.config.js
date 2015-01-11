@@ -4,14 +4,16 @@
 angular.module('webApp.Config.Route', [
   'ui.router'
 ])
+.config(config);
 
-.config(function ($locationProvider, $urlRouterProvider) {
+config.$inject = ['$locationProvider', '$urlRouterProvider'];
+function config($locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode({
     enabled: true,
     requireBase: true
   }).hashPrefix('!');
 
   $urlRouterProvider.otherwise('/');
-});
+}
 
 })();
