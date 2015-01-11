@@ -1,3 +1,4 @@
+(function () {
 'use strict';
 
 // ## Localization configuration
@@ -6,7 +7,7 @@ angular.module('webApp.Config.Localization', [
   'ngCookies',
   'ngLocalize.Config',
   'ngLocalize.InstalledLanguages',
-  'ngLocalize.Events',
+  'ngLocalize.Events'
 ])
 
 .value('localeConf', {
@@ -27,3 +28,5 @@ angular.module('webApp.Config.Localization', [
 	'en': 'en-US',
 	'it': 'it-IT',
 });
+
+})();

@@ -1,10 +1,10 @@
+(function () {
 'use strict';
 
 angular.module('webApp.Route.Welcome', [
   'ui.router',
   'ngLocalize',
-
-  'webApp.Route.Welcome.Controller',
+  'webApp.Route.Welcome.Controller'
 ])
 
 .config(function ($stateProvider) {
@@ -23,3 +23,5 @@ angular.module('webApp.Route.Welcome', [
     },
   });
 });
+
+})();

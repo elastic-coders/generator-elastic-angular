@@ -1,3 +1,4 @@
+(function () {
 'use strict';
 
 angular.module('webApp.Route.Welcome.Controller', [])
@@ -6,3 +7,5 @@ angular.module('webApp.Route.Welcome.Controller', [])
   var ctrl = this;
   ctrl.list = ['one', 'two', 'three'];
 });
+
+})();

@@ -1,3 +1,4 @@
+(function () {
 'use strict';
 
 angular.module('webApp', [
@@ -7,5 +8,7 @@ angular.module('webApp', [
   'webApp.Config.Route',
   'webApp.Config.Localization',
   // Routes
-  'webApp.Route.Welcome',
+  'webApp.Route.Welcome'
 ]);
+
+})();

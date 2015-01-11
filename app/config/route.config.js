@@ -1,7 +1,8 @@
+(function () {
 'use strict';
 
 angular.module('webApp.Config.Route', [
-  'ui.router',
+  'ui.router'
 ])
 
 .config(function ($locationProvider, $urlRouterProvider) {
@@ -12,3 +13,5 @@ angular.module('webApp.Config.Route', [
 
   $urlRouterProvider.otherwise('/');
 });
+
+})();

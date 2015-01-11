@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-// bower:scss
-// endbower
+//bower:css
+@import "../../bower_components/normalize.css/normalize.css";
+//endbower
 
-@import "routes/welcome/welcome.style";
+@import "../../routes/welcome/welcome.style";
