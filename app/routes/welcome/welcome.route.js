@@ -9,7 +9,7 @@ angular.module('webApp.Route.Welcome', [
 
 .config(config);
 
-config.$inject(['$stateProvider']);
+config.$inject = ['$stateProvider'];
 function config($stateProvider) {
   $stateProvider.state('welcome', {
     url: '/',
@@ -25,6 +25,6 @@ function config($stateProvider) {
       }],
     },
   });
-};
+}
 
 })();

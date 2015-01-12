@@ -16,7 +16,6 @@ var gulp = require('gulp'),
   bower_files = require('bower-files')({dir: './app/bower_components'})
   htmlreplace = require('gulp-html-replace'),
   karma = require('karma').server,
-  addsrc = require('gulp-add-src'),
   clean = require('gulp-clean');
 
 var CFG = require("./config.json");
@@ -69,18 +68,15 @@ gulp.task('build:strings', function() {
     .pipe(gulp.dest(BUILD_DEST + '/assets/strings'));
 });
 
-gulp.task('build:files', [
-  'build:scripts', 
-  'build:strings', 
-  'build:styles', 
-  'build:images',
-  'build:html'
-]);
-
 gulp.task('build', [
-  'build:clean', 
-  'build:files'
-], function() {  
+    'build:clean', 
+    'bower',
+    'build:scripts', 
+    'build:strings', 
+    'build:styles', 
+    'build:images',
+    'build:html'
+  ], function() {  
   console.log('built on ' + BUILD_DEST);
 });
 
@@ -205,11 +201,24 @@ gulp.task('jshint', function() {
  * styles
  *******************************************/
 
-gulp.task('build:styles', function() {  
+gulp.task('build:styles', ['build:styles:application', 'build:styles:vendor']);
+
+gulp.task('build:styles:application', function() {
   gulp.src(SRC.scss)
     .pipe(plumber({ errorHandler: onError }))
     .pipe(sass())
     .pipe(concat('main.css'))
+    .pipe(csso())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(size())
+    .pipe(gulp.dest(BUILD_DEST + '/assets'));
+});
+
+gulp.task('build:styles:vendor', function() {
+  gulp.src(bower_files.css)
+    .pipe(plumber({ errorHandler: onError }))
+    .pipe(sass())
+    .pipe(concat('vendor.css'))
     .pipe(csso())
     .pipe(rename({suffix: '.min'}))
     .pipe(size())
@@ -243,6 +252,7 @@ gulp.task('build:html', function () {
     .pipe(plumber({ errorHandler: onError }))
     .pipe(htmlreplace({
       'css': '/assets/main.min.css',
+      'vendorcss': '/assets/vendor.min.css',
       'js': '/assets/main.min.js',
       'vendorjs': '/assets/vendor.min.js',
       'oldieshimjs': '/assets/oldieshim.min.js'
@@ -251,7 +261,6 @@ gulp.task('build:html', function () {
     .pipe(size())
     .pipe(gulp.dest(BUILD_DEST));
 });
-
 
 /*******************************************
  * images
