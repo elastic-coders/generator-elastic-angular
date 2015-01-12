@@ -174,7 +174,7 @@ gulp.task('build:scripts:application', function() {
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(stripDebug())
     .pipe(concat('main.js'))
-//bd    .pipe(uglify())
+    .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(size())
     .pipe(gulp.dest(BUILD_DEST + '/assets'));
@@ -257,7 +257,7 @@ gulp.task('build:html', function () {
       'vendorjs': '/assets/vendor.min.js',
       'oldieshimjs': '/assets/oldieshim.min.js'
     }))
-//bd    .pipe(minifyHTML())
+    .pipe(minifyHTML())
     .pipe(size())
     .pipe(gulp.dest(BUILD_DEST));
 });
