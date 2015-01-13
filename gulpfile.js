@@ -21,7 +21,12 @@ var gulp = require('gulp'),
 var CFG = require("./config.json");
 
 var SRC = {
-  js: ['./app/**/*.js', '!./app/bower_components/**/*'],
+  js: [
+    './app/**/*.js', 
+    '!./app/bower_components/**/*',
+    '!*.spec.js',
+    '!*.e2e.js'
+  ],
   scss: './app/assets/styles/main.scss',
   html: './app/**/*.html'
 };
@@ -112,12 +117,7 @@ var browserSyncConfig = {
     server: {
       baseDir: "./app",
     },
-    port: 3110
-    /*
-    routes: {
-      "/bower_components": "../bower_components"
-    }
-    */
+    port: CFG.server.port
   };
 
 gulp.task('browser-sync', function() {
